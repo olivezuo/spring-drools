@@ -1,0 +1,18 @@
+package com.jin.rules;
+
+import java.lang.Number;
+import java.lang.Integer;
+import com.jin.domain.Athlete;
+import com.jin.domain.Team;
+
+rule AssignTeam
+	//dialect "mvel"
+	when
+		_althlete : Athlete()
+		_team : Team( name == "peewee", members not contains _althlete)
+	then
+		_team.addMember(_althlete);
+		insert(_team);
+		System.out.println("Rule applied, men!");
+		System.out.println(_althlete.getAge());
+end
