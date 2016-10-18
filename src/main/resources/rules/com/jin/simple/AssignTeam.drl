@@ -1,5 +1,6 @@
-package com.jin.rules;
+package com.jin.simple;
 
+global org.slf4j.Logger logger;
 import java.lang.Number;
 import java.lang.Integer;
 import com.jin.domain.Athlete;
@@ -8,11 +9,11 @@ import com.jin.domain.Team;
 rule AssignTeam
 	//dialect "mvel"
 	when
-		_althlete : Athlete()
-		_team : Team( name == "peewee", members not contains _althlete)
+		_althlete : Athlete(age < 10)
+		_team : Team(level == "peewee")
 	then
 		_team.addMember(_althlete);
 		insert(_team);
-		System.out.println("Rule applied, men!");
-		System.out.println(_althlete.getAge());
+		logger.info("Simple Rule applied!");
+		logger.info("" + _althlete.getAge());
 end

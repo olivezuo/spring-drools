@@ -1,23 +1,30 @@
 package com.jin.domain;
 
-import java.util.List;
-
 public class Match {
 	
-	private Team team;
-	private List<Athlete> athletes;
+	private Team teamA;
+	private Team teamB;
 	
-	public Team getTeam() {
-		return team;
+	public Team getTeamA() {
+		return teamA;
 	}
-	public void setTeam(Team team) {
-		this.team = team;
+	public void setTeamA(Team teamA) {
+		this.teamA = teamA;
 	}
-	public List<Athlete> getAthletes() {
-		return athletes;
+
+	public Team getTeamB() {
+		return teamB;
 	}
-	public void setAthletes(List<Athlete> athletes) {
-		this.athletes = athletes;
+	
+	public void setTeamB(Team teamB) {
+		this.teamB = teamB;
+	}
+	
+	public String getMatch() {
+		if ((null != teamA) && (null != teamB)){
+			return "We have a match for team " + teamA.getName() +" and team " + teamB.getName();
+		}
+		return null;
 	}
 
 	

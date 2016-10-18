@@ -13,7 +13,7 @@ public class Team implements java.io.Serializable
    static final long serialVersionUID = 1L;
 
    private String name;
-   private String sport;
+   private String level;
 
    private List<Athlete> members;
 
@@ -22,24 +22,24 @@ public class Team implements java.io.Serializable
 	   this.members = new ArrayList<Athlete>();
    }
 
-   public java.lang.String getName()
+   public String getName()
    {
       return this.name;
    }
 
-   public void setName(java.lang.String name)
+   public void setName(String name)
    {
       this.name = name;
    }
 
-   public java.lang.String getSport()
+   public String getLevel()
    {
-      return this.sport;
+      return this.level;
    }
 
-   public void setSport(java.lang.String sport)
+   public void setLevel(String level)
    {
-      this.sport = sport;
+      this.level = level;
    }
 
    public List<Athlete> getMembers()
@@ -52,13 +52,11 @@ public class Team implements java.io.Serializable
       this.members = members;
    }
 
-   public Team(String name, String sport,
-         List<Athlete> members)
+   public Team(String name, String level)
    {
       this.name = name;
-      this.sport = sport;
-      this.members = members;
-   }
+      this.level = level;
+    }
    
    public void addMember(Athlete athlete)
    {

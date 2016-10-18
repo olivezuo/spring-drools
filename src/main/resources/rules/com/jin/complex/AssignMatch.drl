@@ -1,0 +1,22 @@
+package com.jin.complex;
+
+global org.slf4j.Logger logger;
+import java.lang.Number;
+import java.lang.Integer;
+import com.jin.domain.Match;
+import com.jin.domain.Team;
+
+rule AssignMatch
+	no-loop
+	activation-group "match"
+	when
+		_teamA : Team(level == "peewee")
+		_teamB : Team(level == "peewee", name != _teamA.name)
+		_match : Match()
+	then
+		_match.setTeamA(_teamA);
+		_match.setTeamB(_teamB);
+		//insert(_match);
+		logger.info("Complex Rule applied!");
+		logger.info(_match.getMatch());
+end

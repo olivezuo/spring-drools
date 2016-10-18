@@ -1,29 +1,40 @@
 package com.jin.service;
 
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.jin.domain.Athlete;
+import com.jin.domain.Match;
 import com.jin.domain.Team;
+import com.jin.rule.service.ComplexRuleService;
 
+@Service
 public class MatchService {
-
+	private static final Logger logger = LoggerFactory.getLogger(MatchService.class);
+	
 	@Autowired
-	public KieContainer kieContainer;
+	protected ComplexRuleService complexRuleService;
 	
-	private Athlete athlete;
-	private Team team;
-	
-	public void findGameForAthlete(){
+	public void assingMatch(){
 		
-		KieSession kieSession = kieContainer.newKieSession("MatchSession");
-		kieSession.insert(athlete);
-		kieSession.insert(team);
+		Team teamA = new Team("Retriever","peewee");
+		Team teamB = new Team("Grayhound","peewee");
+		Match match = new Match();
+		
+		List<Object> collection = new ArrayList<Object>();
+		collection.add(teamA);
+		collection.add(teamB);
+		collection.add(match);
+		
+		complexRuleService.getStatelessKieSession().execute(collection);
+		
+		logger.info("The match " +  match.getMatch());
+		
 	}
 	
-	public void init() {
-		
-	}
 	
 }
